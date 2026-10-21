@@ -30,6 +30,14 @@ Każdy push do `main`:
 4. Na telefonie otwórz Releases, pobierz APK i zainstaluj. Kolejne wersje: pobierz nowszy APK i instaluj
    bez odinstalowywania.
 
+## Styl graficzny
+
+Grafika jest wzorowana na kreskówce z lat 70./80.: postacie mają ciemny kontur i proporcje z serialu
+(Maja ze złotą kręconą grzywką, Gucio – trutek (samiec pszczoły) z brązową czupryną i czerwoną muszką, Alek z opuszczonymi powiekami, chrząszcz z czerwonym szalikiem),
+a świat jest „malowany gwaszem” (koniczyny, jaskry, tekstury ziemi). Wszystko rysowane jest w kodzie – w `web/index.html`,
+sekcja `STYL`. Kafelki i warstwy tła są rysowane raz do tekstur (`mkTex`), a potem tylko wklejane, żeby gra była płynna.
+Na wolnym telefonie gra sama obniża rozdzielczość, a potem włącza tryb lekki (bez dalszych warstw tła).
+
 ## Sterowanie dotykowe
 
 Na telefonie w poziomie gra jest w środku, a po bokach są **marginesy ze sterowaniem** (palce nie zasłaniają gry):
