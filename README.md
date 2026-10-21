@@ -38,6 +38,15 @@ a świat jest „malowany gwaszem” (koniczyny, jaskry, tekstury ziemi). Wszyst
 sekcja `STYL`. Kafelki i warstwy tła są rysowane raz do tekstur (`mkTex`), a potem tylko wklejane, żeby gra była płynna.
 Na wolnym telefonie gra sama obniża rozdzielczość, a potem włącza tryb lekki (bez dalszych warstw tła).
 
+## Dźwięk
+
+Efekty i muzyka są generowane w kodzie (WebAudio) – bez plików audio. Każdy poziom ma własny, oryginalny motyw
+(łąka – skoczny, podziemia – pizzicato, korony drzew – płynne arpeggia, gniazdo – szybki, napięty), są też motywy
+ekranu tytułowego, wygranej i końca gry. Przycisk głośnika (lub klawisz **M**) przełącza trzy tryby:
+muzyka + efekty → tylko efekty → cisza (wybór jest zapamiętywany). Muzyka cichnie na pauzie i po zmianie karty.
+Muzyka ruszy po pierwszym dotknięciu/kliknięciu (wymóg przeglądarek).
+Nowe motywy dopiszesz w obiekcie `TRACKS` w `web/index.html` (nuty zapisane tekstem, np. `"E5 . G5 _"`).
+
 ## Sterowanie dotykowe
 
 Na telefonie w poziomie gra jest w środku, a po bokach są **marginesy ze sterowaniem** (palce nie zasłaniają gry):
