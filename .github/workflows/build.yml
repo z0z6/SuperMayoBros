@@ -3,8 +3,10 @@ name: Build APK
 on:
   push:
     branches: [ main, master ]
-  pull_request:
   workflow_dispatch:
+
+permissions:
+  contents: write   # potrzebne do publikacji APK w Releases
 
 jobs:
   build:
@@ -17,21 +19,29 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      # Gradle jest instalowany przez akcję - nie trzeba commitować gradle wrappera
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.9
 
-      # Upewnij się, że SDK 34 jest dostępne (na runnerach zwykle już jest)
       - name: Android SDK
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0" || true
 
-      - name: Build debug APK
+      - name: Build APK (zawiera web/index.html)
         run: gradle assembleDebug --stacktrace
+
+      - name: Nazwa pliku
+        run: cp app/build/outputs/apk/debug/app-debug.apk maja-1.${{ github.run_number }}.apk
 
       - uses: actions/upload-artifact@v4
         with:
-          name: maja-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: maja-apk
+          path: maja-1.${{ github.run_number }}.apk
+
+      # Gotowy link do pobrania APK na telefonie: zakładka Releases
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Maja 1.${{ github.run_number }}
+          files: maja-1.${{ github.run_number }}.apk
