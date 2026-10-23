@@ -472,7 +472,7 @@ class Game {
     if (p.onGround) this.coyote = 4; else if (this.coyote > 0) this.coyote--;
     if (this.jbuf > 0 && this.coyote > 0) {
       const boost = gucio ? 1.12 : 1;
-      p.vy = -(4.0 + Math.abs(p.vx) * 0.3) * boost;
+      p.vy = -(4.3 + Math.abs(p.vx) * 0.32) * boost;
       p.onGround = false; this.coyote = 0; this.jbuf = 0;
       Sfx.play("jump");
     }
